@@ -1,0 +1,35 @@
+{
+  "name": "portfolio-2024",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npx rollup -c -w"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@guanghechen/rollup-plugin-copy": "^6.0.0-alpha.9",
+    "@rollup/plugin-alias": "^5.1.0",
+    "@rollup/plugin-commonjs": "^26.0.1",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-replace": "^5.0.7",
+    "@rollup/plugin-typescript": "^11.1.6",
+    "gsap": "^3.12.1",
+    "rollup-plugin-import-css": "^3.5.1",
+    "rollup-plugin-livereload": "^2.0.5",
+    "swiper": "^11.1.12",
+    "toastr": "^2.1.4"
+  },
+  "devDependencies": {
+    "@types/toastr": "^2.1.43",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.45",
+    "postcss-cli": "^11.0.0",
+    "rollup": "^4.21.2",
+    "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-serve": "^1.1.1",
+    "tailwindcss": "^3.4.10",
+    "tslib": "^2.7.0"
+  }
+}
