@@ -3,7 +3,7 @@ type Themes = "dark" | "light";
     Get theme from localstorage. The theme value should only be 'light' and 'dark'. 
     If the theme is unset or incorrect value, 'dark' will be the theme.
 */
-const getTheme = () => {
+export const getTheme = () => {
   const storageTheme = localStorage.getItem("theme");
   //
   if (storageTheme != "dark" && storageTheme != "light") return "dark";

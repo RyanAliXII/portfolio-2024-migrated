@@ -5,6 +5,8 @@ const cta = document.querySelector("#cta");
 const tagline = document.querySelector("#tagline");
 const arrow = document.querySelector("#arrow");
 const timeline = gsap.timeline();
+
+/*Converted these animations in CSS, However i still keep it just in case*/
 window.addEventListener("load", () => {
   greetings.classList.remove("hidden");
   summary.classList.remove("hidden");

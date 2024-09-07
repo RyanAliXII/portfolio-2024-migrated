@@ -6,3 +6,73 @@
   min-height: 100vh;
   min-height: 100svh;
 }
+
+@keyframes slideInFromTop {
+  from {
+    transform: translateY(-300px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromBottom {
+  from {
+    transform: translateY(300px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    transform: translateX(-300px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes arrowBounce {
+  0% {
+    margin-left: 0;
+  }
+  50% {
+    margin-left: 10px;
+  }
+  100% {
+    margin-left: 0px;
+  }
+}
+
+/* Applying animation with sequential delays for timeline effect */
+#greetings {
+  animation: slideInFromTop 0.4s ease-out forwards;
+}
+
+#summary {
+  animation: slideInFromBottom 0.4s ease-out forwards;
+  animation-delay: 0.4s; /* Start after greetings finishes */
+}
+
+#cta {
+  animation: slideInFromBottom 0.4s ease-out forwards;
+  animation-delay: 0.8s; /* Start after summary finishes */
+}
+
+#tagline {
+  animation: slideInFromLeft 0.4s ease-out forwards;
+  animation-delay: 1.2s; /* Start after cta finishes */
+}
+
+/* Continuous bouncing animation for the arrow */
+#arrow {
+  animation: arrowBounce 2s ease infinite;
+}

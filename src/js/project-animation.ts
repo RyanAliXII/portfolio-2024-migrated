@@ -1,4 +1,5 @@
 import gsap, { Power2 } from "gsap";
+import { getTheme } from "./theme";
 const projectSection = document.querySelector("#projects");
 const projectNav: HTMLDivElement = document.querySelector("#projectNav");
 const AcceptableWindowWidth = 1500;
@@ -8,18 +9,23 @@ const inDevelopmentProjectLists = document.querySelector(
 );
 
 const oldProjectLists = document.querySelector("#oldProjectLists");
-const recentNavLine = document
-  .querySelector("#recentNavList")
-  .querySelector(".line");
 
-const inDevelopmentNavLine = document
-  .querySelector("#inDevelopmentNavList")
-  .querySelector(".line");
-const oldNavLine = document.querySelector("#oldNavList").querySelector(".line");
+const recentNav = document.querySelector("#recentNavList");
+const recentNavLine = recentNav.querySelector(".line");
+const recentNavText = recentNav.querySelector(".text");
+
+const inDevelopmentNav = document.querySelector("#inDevelopmentNavList");
+const inDevelopmentNavLine = inDevelopmentNav.querySelector(".line");
+const inDevelopmentNavText = inDevelopmentNav.querySelector(".text");
+
+const oldNav = document.querySelector("#oldNavList");
+const oldNavLine = oldNav.querySelector(".line");
+const oldNavText = oldNav.querySelector(".text");
+
 let isProjectObserverActive = false;
 setTimeout(() => {
   isProjectObserverActive = true;
-}, 500);
+}, 1000);
 window.addEventListener("load", () => {
   const projectSectionObserver = new IntersectionObserver(
     (entries) => {
@@ -71,30 +77,69 @@ window.addEventListener("load", () => {
 
   projectSectionObserver.observe(projectSection);
 
-  const animateToActive = (line: Element) => {
-    gsap.fromTo(
-      line,
-      { width: "1.25rem", borderColor: "rgb(156 163 175)" },
-      { width: "2.5rem", borderColor: "rgb(55 65 81)" }
-    );
+  const animateToActive = (line: Element, text: Element) => {
+    const theme = getTheme();
+    if (theme === "light") {
+      gsap.fromTo(
+        line,
+        { width: "1.25rem", borderColor: "rgb(156 163 175)" },
+        { width: "2.5rem", borderColor: "rgb(55 65 81)" }
+      );
+      gsap.fromTo(
+        text,
+        { color: "rgb(148 163 184)" },
+        { color: "rgb(51 65 85)" }
+      );
+    } else {
+      gsap.fromTo(
+        line,
+        { width: "1.25rem", borderColor: "rgb(55 65 81)" },
+        { width: "2.25rem", borderColor: "rgb(156 163 175)" }
+      );
+      gsap.fromTo(
+        text,
+        { color: "rgb(51 65 85)" },
+        { color: "rgb(148 163 184)" }
+      );
+    }
   };
 
-  const animateToInactive = (line: Element) => {
-    gsap.fromTo(
-      line,
-      { width: "2.5rem", borderColor: "rgb(55 65 81)" },
-      { width: "1.25rem", borderColor: "rgb(156 163 175)" }
-    );
+  const animateToInactive = (line: Element, text: Element) => {
+    const theme = getTheme();
+    if (theme === "light") {
+      gsap.fromTo(
+        line,
+        { width: "2.5rem", borderColor: "rgb(55 65 81)" },
+        { width: "1.25rem", borderColor: "rgb(156 163 175)" }
+      );
+      gsap.fromTo(
+        text,
+        { color: "rgb(51 65 85)" },
+        { color: "rgb(148 163 184)" }
+      );
+    } else {
+      gsap.fromTo(
+        line,
+        { width: "2.25rem", borderColor: "rgb(156 163 175)" },
+        { width: "1.25rem", borderColor: "rgb(55 65 81)" }
+      );
+      gsap.fromTo(
+        text,
+        { color: "rgb(148 163 184)" },
+        { color: "rgb(51 65 85)" }
+      );
+    }
   };
+
   const recentProjectObserver = new IntersectionObserver(
     (entries) => {
       const entry = entries[0];
 
       if (entry.isIntersecting && window.innerWidth >= AcceptableWindowWidth) {
-        animateToActive(recentNavLine);
+        animateToActive(recentNavLine, recentNavText);
       }
       if (!entry.isIntersecting && window.innerWidth >= AcceptableWindowWidth) {
-        animateToInactive(recentNavLine);
+        animateToInactive(recentNavLine, recentNavText);
       }
     },
     { threshold: 0.2 }
@@ -105,10 +150,10 @@ window.addEventListener("load", () => {
     (entries) => {
       const entry = entries[0];
       if (entry.isIntersecting && window.innerWidth >= AcceptableWindowWidth) {
-        animateToActive(inDevelopmentNavLine);
+        animateToActive(inDevelopmentNavLine, inDevelopmentNavText);
       }
       if (!entry.isIntersecting && window.innerWidth >= AcceptableWindowWidth) {
-        animateToInactive(inDevelopmentNavLine);
+        animateToInactive(inDevelopmentNavLine, inDevelopmentNavText);
       }
     },
     { threshold: 1 }
@@ -118,10 +163,10 @@ window.addEventListener("load", () => {
     (entries) => {
       const entry = entries[0];
       if (entry.isIntersecting && window.innerWidth >= AcceptableWindowWidth) {
-        animateToActive(oldNavLine);
+        animateToActive(oldNavLine, oldNav);
       }
       if (!entry.isIntersecting && window.innerWidth >= AcceptableWindowWidth) {
-        animateToInactive(oldNavLine);
+        animateToInactive(oldNavLine, oldNavText);
       }
     },
     { threshold: 1 }
